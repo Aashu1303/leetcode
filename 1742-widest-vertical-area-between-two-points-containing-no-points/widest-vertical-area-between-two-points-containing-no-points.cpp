@@ -8,15 +8,11 @@ public:
         for(int i = 1 ; i < points.size() ; i++){
             int currx = points[i][0];
             int curry = points[i][1];
-            if(prevx == currx){
-                continue;
-            }else{
+            if(prevx != currx){
+                ans = max(ans , currx - prevx);
                 if(prevy != curry){
-                    ans = max(ans , currx - prevx);
                     prevx = currx;
                     prevy = curry;
-                }else{
-                    ans = max(ans , currx - prevx);
                 }
             }
         }        
