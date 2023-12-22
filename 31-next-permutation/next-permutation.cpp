@@ -1,10 +1,4 @@
 class Solution {
-    void swap(int &a , int &b){
-        int temp = a;
-        a = b;
-        b = temp;
-        return;
-    }
 public:
     void nextPermutation(vector<int>& nums) {
         int index = -1;
@@ -21,7 +15,7 @@ public:
             return;
         }
 
-        for(int i = n-1 ; i >= index ; i--){
+        for(int i = n-1 ; i > index ; i--){
             if(nums[i] > nums[index]){
                 swap(nums[i],nums[index]);
                 break;
