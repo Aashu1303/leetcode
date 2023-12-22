@@ -11,7 +11,7 @@ public:
         }
 
         if(index == -1){
-            sort(nums.begin() , nums.end());
+            reverse(nums.begin() , nums.end());
             return;
         }
 
