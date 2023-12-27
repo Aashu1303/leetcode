@@ -3,21 +3,18 @@ public:
     int minCost(string s, vector<int>& v) {
         int n = s.size();
         if(s.size() == 1) return 0;
-        char prev = s[0]; 
-        int prevMin = INT_MAX , ans = 0 , prevIndex =0;
-        for(int i = 1 ; i < n ; i++){
-            char curr = s[i];
-            if(curr == prev){
-                prevMin = min(v[prevIndex] , v[i]);
-                ans += prevMin;
-                if(v[prevIndex] < v[i]) prevIndex = i;
+        char prev = s[0]; int prevMin = 0;
+        vector<int> dp(n+1 , 0);
+        for(int i = 1 ; i <= n ; i++){
+            if(s[i-1] == prev){
+                dp[i] = dp[i-1] + min(v[i-1] , prevMin);
+                prevMin = max(v[i-1] , prevMin);
             }else{
-                prevIndex = i;
+                dp[i] = dp[i-1];
+                prevMin = v[i-1];
+                prev = s[i-1];
             }
-            prev = curr;
-            //cout << prevIndex << " ";
         }
-        //cout << endl;
-        return ans;
+        return dp[n];
     }
 };
