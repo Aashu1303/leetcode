@@ -1,42 +1,29 @@
+int dp[101][27][101][101];
 class Solution {
+    int solve(string &s , int i , int prev , int freq, int k){
+        if(k < 0) return INT_MAX;
+        if(i >= s.length()){
+            return 0;
+        }
+        if(dp[i][prev][freq][k] != -1) return dp[i][prev][freq][k];
+
+        int delete_i = solve(s , i+1 , prev , freq, k-1);
+        int keep_i = 0;
+
+        if(s[i]-'a' == prev){
+            int temp = 0;
+            if(freq == 1 || freq == 99 || freq == 9){
+                temp = 1;
+            }
+            keep_i = temp + solve(s,i+1,prev,freq+1,k);
+        }else{
+            keep_i = 1 + solve(s,i+1 , s[i]-'a' , 1 , k);
+        }
+        return dp[i][prev][freq][k] = min(keep_i , delete_i);
+    }
 public:
     int getLengthOfOptimalCompression(string s, int k) {
-        int n = s.size();
-        int m = k;
-
-        int dp[110][110] = {};
-        for (int i = 1; i <= n; ++i) {
-            for (int j = 0; j <= i && j <= m; ++j) {
-                int need_remove = 0;
-                int group_count = 0;
-                dp[i][j] = INT_MAX;
-                if (j) {
-                    dp[i][j] = dp[i - 1][j - 1];
-                }
-                for (int k = i; k >= 1; --k) {
-                    if (s[k - 1] != s[i - 1]) {
-                        need_remove += 1;
-                    } else {
-                        group_count += 1;
-                    }
-
-                    if (need_remove > j) {
-                        break;
-                    }
-
-                    if (group_count == 1) {
-                        dp[i][j] = min(dp[i][j], dp[k - 1][j - need_remove] + 1);
-                    } else if (group_count < 10) {
-                        dp[i][j] = min(dp[i][j], dp[k - 1][j - need_remove] + 2);
-                    } else if (group_count < 100) {
-                        dp[i][j] = min(dp[i][j], dp[k - 1][j - need_remove] + 3);
-                    } else {
-                        dp[i][j] = min(dp[i][j], dp[k - 1][j - need_remove] + 4);
-                    }
-                }
-            }
-        }
-
-        return dp[n][m];
+        memset(dp,-1,sizeof(dp));
+        return solve(s,0,26,0,k);
     }
 };
