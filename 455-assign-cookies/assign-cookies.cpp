@@ -8,14 +8,11 @@ public:
         int left = 0 , right = 0;
         int ans = 0;
         while(left < n && right < m){
-            while(right < m && g[left] > s[right]){
-                right++;
-            }
-            if((right < m) && g[left] <= s[right]){
+            if(g[left] <= s[right]){
                 ans++;
-                right++;
+                left++;
             }
-            left++;
+            right++;
         }
 
         return ans;
