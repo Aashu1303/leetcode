@@ -1,20 +1,19 @@
 class Solution {
 public:
     int minOperations(vector<int>& nums) {
-        unordered_map<int,int> mp;
-        vector<int> v(5,0);
-        v[1] = 0 , v[2] = 1 , v[3] = 1 , v[4] = 2;  
+        unordered_map<int,int> mp;  
         for(int i : nums){
             mp[i]++;
         }
         int ans = 0;
         for(auto i : mp){
-            while(i.second > 4){
-                ans++;
-                i.second -= 3;
+            int s = i.second;
+            if(s == 1) return -1;
+            if(s%3 == 1){
+                ans += ((s/3)-1) + 2;
+            }else{
+                ans += (s/3) + ((s%3)/2);
             }
-            if(i.second == 1) return -1;
-            ans += v[i.second];
         }
         return ans;
     }
