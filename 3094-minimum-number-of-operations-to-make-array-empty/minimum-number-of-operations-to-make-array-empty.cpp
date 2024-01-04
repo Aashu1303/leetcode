@@ -16,7 +16,6 @@ public:
             if(i.second == 1) return -1;
             ans += v[i.second];
         }
-
         return ans;
     }
 };
