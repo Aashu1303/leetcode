@@ -2,12 +2,8 @@ class Solution {
 public:
     bool checkStraightLine(vector<vector<int>>& v) {
         int n = v.size();
-        if(n == 2) return true;
-        double x = v[0][0] , y = v[0][1];
-        double prev; 
-        if(x == v[1][0]){
-            prev = DBL_MAX;
-        }else{
+        double x = v[0][0] , y = v[0][1] , prev = DBL_MAX;
+        if(x != v[1][0]){
             prev = (v[1][1] - y) / (v[1][0] - x);
         }
         for(int i = 2 ; i < n;  i++){
