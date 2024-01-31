@@ -8,7 +8,6 @@ public:
             while(!s.empty() && v[i] >= v[s.top()]){
                 s.pop();
             }
-
             if(s.empty()){
                 ans.push_back(0);
             }else{
