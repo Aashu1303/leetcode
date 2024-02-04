@@ -4,23 +4,23 @@ public:
         //base case
         if(t.size() > s.size()) {return "";}
         
-        unordered_map<char,int> temp, mp;
+        vector<int> temp(128,0), mp(128,0);
         for(auto i : t){
-            temp[i]++;
+            temp[i -'A']++;
         }
 
         string ans = "", curr = "";
         int size = INT_MAX , i = 0 , j = i , total = 0;
         
         while(j < s.size()){
-            mp[s[j]]++;
+            mp[s[j]-'A']++;
             curr += s[j];
-            if(mp[s[j]] == temp[s[j]]){
-                total += mp[s[j]];
+            if(mp[s[j]-'A'] == temp[s[j]-'A']){
+                total += mp[s[j]-'A'];
             }
-            while((mp[s[i]] > temp[s[i]]) && (i < j)){
+            while((mp[s[i]-'A'] > temp[s[i]-'A']) && (i < j)){
                 curr.erase(0,1);
-                mp[s[i]]--;
+                mp[s[i]-'A']--;
                 i++;
             }
             if((size >= (j-i+1)) && (total == t.size())){
