@@ -16,17 +16,14 @@ public:
             mp[s[j]]++;
             curr += s[j];
             if(mp[s[j]] == temp[s[j]]){
-                total+=mp[s[j]];
-                //cout << "mai chal rha hu bc total wala" << total << endl;
+                total += mp[s[j]];
             }
-            while((mp[s[i]] > temp[s[i]]) && i < j){
-                curr.erase(curr.begin());
+            while((mp[s[i]] > temp[s[i]]) && (i < j)){
+                curr.erase(0,1);
                 mp[s[i]]--;
                 i++;
-                cout << "mai chal rha hu bc delete wala" << endl;
             }
-            if((size >= (j-i+1)) && (total >= t.size())){
-                cout << "mai chal rha hu bc" << endl;
+            if((size >= (j-i+1)) && (total == t.size())){
                 ans = curr;
                 size = (j-i+1);
             }
