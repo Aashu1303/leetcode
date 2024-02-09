@@ -7,8 +7,9 @@ public:
         }
         vector<int> dp(n+1 , INT_MAX-1000);
         dp[0] = 0 , dp[1] = 1;
+        int x = sqrt(n);
         for(int i = 2 ; i <= n ; i++){
-            for(int j = 1 ; j <= sqrt(i) ; j++){
+            for(int j = 1 ; j <= x ; j++){
                 if(v[j] <= i){
                     dp[i] = min(dp[i] , dp[i-v[j]]+1);
                 }
