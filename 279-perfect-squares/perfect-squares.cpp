@@ -8,9 +8,9 @@ public:
         vector<int> dp(n+1 , INT_MAX-1000);
         dp[0] = 0 , dp[1] = 1;
         for(int i = 2 ; i <= n ; i++){
-            for(auto j : v){
-                if(j <= i){
-                    dp[i] = min(dp[i] , dp[i-j]+1);
+            for(int j = 1 ; j <= sqrt(i) ; j++){
+                if(v[j] <= i){
+                    dp[i] = min(dp[i] , dp[i-v[j]]+1);
                 }
                 else break;
             }
