@@ -1,19 +1,20 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        // Boyer's Voting algorithm
-        int count = 0 , ans = 1;
-        for(int i = 0 ; i < nums.size() ; i++){
-            if(count == 0) ans = nums[i];
-            
-            if(ans == nums[i]){
-                count++;
-            }else{
-                count --;
-            }
+        int i = 0 , j = nums.size()-1;
+        unordered_map<int,int> mp;
+        int check = (nums.size())/2;
+        while(i < j){
+            mp[nums[i]]++;mp[nums[j]]++;
+            if(mp[nums[i]] > check) return nums[i];
+            if(mp[nums[j]] > check) return nums[j];
+            i++; j--;
         }
-
-        return ans;
+        if(i == j){
+            mp[nums[i]]++;
+            if(mp[nums[i]] > check) return nums[i];
+        }
+        return 0;
 
     }
 };
