@@ -7,10 +7,8 @@ public:
         long long prev = 0;
         for(int j = 0 ; j < n ; j++){
             prev += nums[j];
-            if(j-i+1 >= 3){
-                if(nums[j] < (prev - nums[j])){
-                    ans = max(ans , prev);
-                }
+            if(j+1 >= 3 && nums[j] < (prev - nums[j])){
+                ans = max(ans , prev);
             }
         }
 
