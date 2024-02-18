@@ -1,33 +1,59 @@
 class Solution {
 public:
-    int mostBooked(int n, vector<vector<int>>& meetings) {
-        vector<int> ans(n,0);
-        vector< long long > times(n,0);
-        sort(meetings.begin(),meetings.end());
-
-        for(int i=0;i<meetings.size();i++){
-            int start = meetings[i][0], end = meetings[i][1];
-            bool flag = false;
-            int minind = -1;
-            long long val = 1e18;
-            for(int j=0;j<n;j++){
-                if(times[j]<val) val = times[j], minind = j;
-                if(times[j] <= start){
-                    flag = true;
-                    ans[j]++;
-                    times[j] = end;
-                    break;
+    int mostBooked(int n, vector<vector<int>>& m) {
+        sort(m.begin() , m.end());
+        vector<int> freq(n,0) , room(n,0);
+        priority_queue<pair<long long,int> , vector<pair<long long,int>> , greater<pair<long long,int>>> pq;
+        pq.push({m[0][1] , 0});
+        freq[0]++; // 0th room given to first meeting
+        room[0]++; // 1 meeting held in 0th room
+        int j = 1;
+        for(int i = 1 ; i < m.size() ; i++){
+            if(pq.size() < n){
+                // if the starting time of the second meeting is greater than the previous meeting held then the meeting will held on the same room
+                // only applicable for first n meetings
+                while(!pq.empty() && pq.top().first <= m[i][0]){
+                    room[pq.top().second]--;
+                    // cout << "pui" <<  " " << pq.top().second << endl;
+                    pq.pop();
+                }
+                
+                for(int k = 0 ; k < n ; k++){
+                    if(room[k] == 0){
+                        pq.push({(m[i][1]) , k});
+                        room[k]++;
+                        freq[k]++;
+                        break;
+                    }
+                }    
+            }else{
+                int start = m[i][0] , end = m[i][1];
+                long long prevEnd = 0;
+                while(!pq.empty() && start >= pq.top().first){
+                    room[pq.top().second]--;
+                    cout << "pui" <<  " " << pq.top().second << endl;
+                    pq.pop();
+                }
+                if(pq.size() == n){
+                    prevEnd = (pq.top().first - start);
+                    room[pq.top().second]--;
+                    pq.pop();
+                }
+                for(int k = 0 ; k < n ; k++){
+                    if(room[k] == 0){
+                        pq.push({((long long)m[i][1] + prevEnd) , k});
+                        room[k]++;
+                        freq[k]++;
+                        break;
+                    }
                 }
             }
-            if(!flag){
-                ans[minind]++;
-                times[minind]+=(1ll*(end-start));
-            }
         }
-        int maxi = -1, id = -1;
-        for(int i =0;i<n;i++){
-            if(ans[i]>maxi) maxi = ans[i], id = i;
+        int maxi = *max_element(freq.begin() , freq.end());
+        for(int i = 0 ; i < n ; i++){
+            if(freq[i] == maxi) return i;
         }
-        return id;
+
+        return -1;
     }
 };
