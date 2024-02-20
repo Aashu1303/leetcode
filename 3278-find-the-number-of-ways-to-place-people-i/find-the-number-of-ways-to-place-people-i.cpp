@@ -12,10 +12,6 @@ public:
             return a[0] < b[0];
         };
         sort(v.begin() , v.end() , comp);
-        for(auto i : v){
-            for(auto j : i) cout << j <<  " ";
-            cout << endl;
-        }
         int n = v.size();
         int ans = 0;
         for(int i = 0 ; i < n ; i++){
