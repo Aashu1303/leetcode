@@ -2,7 +2,7 @@ class Solution {
 public:
     int findJudge(int n, vector<vector<int>>& trust) {
         if(n == 1) return 1;
-        unordered_map<int,int> t , nt;
+        map<int,int> t , nt;
         for(auto i : trust){
             t[i[0]]++;
             nt[i[1]]++;
