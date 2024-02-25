@@ -17,7 +17,7 @@ public:
         int n = b.size();
         long long int ans = 0;
         
-        for(int i = 0 ; i < n ; i++){
+        for(int i = 0 ; i < n-1 ; i++){
             for(int j = i+1 ; j < n ; j++){
                 pair<pair<ll,ll>,pair<ll,ll>> r1 , r2;
                 //    x          y           x         y                x        y         x         y
