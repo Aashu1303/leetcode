@@ -8,7 +8,7 @@ class Solution {
         
         if(x < x_end and y < y_end){
             ll side = min(x_end - x , y_end - y);
-            return pow(side , 2); 
+            return (side * side); 
         }
         return 0;
     }
