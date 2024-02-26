@@ -25,7 +25,7 @@ class Solution {
                 v.push_back(INT_MIN);
                 continue;
             }
-
+            
             q.push(temp -> left);            
             q.push(temp -> right);
             
