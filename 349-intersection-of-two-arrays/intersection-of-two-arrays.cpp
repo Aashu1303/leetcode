@@ -5,13 +5,11 @@ public:
         for(auto i : nums1){
             mp1[i]++;
         }
-        for(auto i : nums2){
-            mp2[i]++;
-        }
         vector<int> ans;
-        for(auto i : mp1){
-            if(mp2.count(i.first)){
-                ans.push_back(i.first);
+        for(auto i : nums2){
+            if(mp1.count(i) && !mp2.count(i)){
+                ans.push_back(i);
+                mp2[i]++;
             }
         }
 
