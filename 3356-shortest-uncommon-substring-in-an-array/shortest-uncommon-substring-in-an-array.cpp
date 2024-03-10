@@ -26,12 +26,16 @@ public:
             }
         }
         for(int i = 0 ; i < n ; i++){
-            for(auto j : mp){
-                if(j.second.first == 1 && j.second.second == i+1){
-                    if(ans[i] == ""){
-                        ans[i] = j.first;
-                    }else{
-                        ans[i] = compareStrings(ans[i] , j.first);
+            string s = arr[i];
+            for(int j = 1 ; j <= s.size() ; j++){
+                for(int k = 0 ; k < j ; k++){
+                    string temp = s.substr(k,j-k);
+                    if(mp[temp].first == 1){
+                        if(ans[i] == ""){
+                            ans[i] = temp;
+                        }else{
+                            ans[i] = compareStrings(ans[i] , temp);
+                        }
                     }
                 }
             }
