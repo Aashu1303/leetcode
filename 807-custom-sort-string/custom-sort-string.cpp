@@ -1,25 +1,21 @@
 class Solution {
 public:
     string customSortString(string order, string s) {
-        map<char,int> mp;
+        vector<int> mp(26,0);
         string ans = "";
-        for(auto i : s) mp[i]++;
+        for(char i : s) mp[i-'a']++;
 
-        for(auto i : order){
-            if(mp[i] > 0){
-                while(mp[i]){
-                    ans += i;
-                    mp[i]--;
-                }
+        for(char i : order){
+            while(mp[i-'a']){
+                ans += i;
+                mp[i-'a']--;
             }
         }
 
-        for(auto i : mp){
-            if(i.second > 0){
-                while(i.second){
-                    ans += i.first;
-                    i.second--;
-                }
+        for(char i = 'a' ; i <= 'z' ; i++){
+            while(mp[i-'a']){
+                ans += i;
+                mp[i-'a']--;
             }
         }
 
