@@ -10,29 +10,16 @@
  * };
  */
 class Solution {
-    int solve(TreeNode* root){
-        if(root -> left == NULL && root -> right == NULL){
-            return 1;
-        }
-        int left = INT_MAX , right = INT_MAX;
-        if(root -> left != NULL){
-            left = 1 + solve(root -> left);
-        }
-        if(root -> right != NULL){
-            right = 1 + solve(root -> right);
-        }
-
-        return min(right , left);
-    }
 public:
     int minDepth(TreeNode* root) {
         if(root == NULL) return 0;
+
         int left = INT_MAX , right = INT_MAX;
-        if(root -> left  != NULL){
-            left = solve(root->left);
+        if(root -> left != NULL){
+            left = minDepth(root -> left);
         }
         if(root -> right != NULL){
-            right = solve(root -> right);
+            right = minDepth(root -> right);
         }
 
         int ans = min(left , right);
