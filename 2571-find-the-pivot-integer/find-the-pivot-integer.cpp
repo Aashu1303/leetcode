@@ -4,7 +4,7 @@ public:
         if(n == 1) return 1;
         int sum = n * (n+1) / 2;
         int prev = 0 , k = n/2;
-        while(n != k){
+        while(n >= k){
             prev += n;
             //cout << sum << " " << prev << endl;
             if(sum == prev) return n;
