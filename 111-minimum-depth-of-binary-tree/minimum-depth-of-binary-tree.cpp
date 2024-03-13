@@ -10,7 +10,12 @@
  * };
  */
 class Solution {
-    
+    int speed = []() {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    return 0;
+}();
 public:
     int minDepth(TreeNode* root) {
         if(root == NULL) return 0;
