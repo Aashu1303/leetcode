@@ -3,19 +3,21 @@ public:
     int findMinArrowShots(vector<vector<int>>& points) {
         ios_base::sync_with_stdio(false);
         cin.tie(NULL);
-
         int n = points.size();
-        sort(points.begin(),points.end());
-        vector<int> v = points[0];
-        vector<vector<int>> ans;
+        vector<pair<int,int>> p;
+        for(auto &i : points){
+            p.push_back({i[0],i[1]});
+        }
+        sort(p.begin(),p.end());
+        pair<int,int> v = p[0];
+        vector<pair<int,int>> ans;
         for(int i = 1 ; i < n ; i++){
-            vector<int> temp = points[i];
-            if(v[0] <= temp[0] && v[1] >= temp[0]){
-                v[0] = max(temp[0] , v[0]);
-                v[1] = min(temp[1] , v[1]);
+            if(v.first <= p[i].first && v.second >= p[i].first){
+                v.first = max(p[i].first , v.first);
+                v.second = min(p[i].second , v.second);
             }else{
                 ans.push_back(v);
-                v = temp;
+                v = p[i];
             }
         }
 
