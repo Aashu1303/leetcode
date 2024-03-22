@@ -40,7 +40,7 @@ public:
             head = head -> next;
         }
         
-         while(temp) cout << temp -> val , temp = temp -> next;
+        //while(temp) cout << temp -> val , temp = temp -> next;
 
         if(slow == NULL) return true;
 
