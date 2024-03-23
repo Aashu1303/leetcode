@@ -9,26 +9,29 @@
  * };
  */
 class Solution {
-    ListNode* reverse(ListNode* &head){
-        ListNode* prev = NULL;
-        ListNode* temp = head;
-
-        while(temp != NULL){
-            ListNode* next = temp -> next;
-            temp -> next = prev;
-            prev = temp;
-            temp = next;
-        }
-
-        return prev;
-    }
 public:
     void reorderList(ListNode* head) {
         if(head == NULL || head -> next == NULL) return;
-        ListNode * temp = head;
-        while(temp -> next != NULL){
-            temp -> next = reverse(temp -> next);
-            temp = temp -> next;
+        ListNode * curr = head;
+        stack<ListNode*> st;
+        int size=  0;
+        while(curr != NULL){
+            st.push(curr);
+            curr = curr -> next;
+            size++;
         }
+        size = size/2;
+        curr = head;
+        while(size--){
+            ListNode* next = curr -> next;
+            ListNode* top = st.top();
+            curr -> next = top;
+            top -> next = next;
+            cout << curr -> val << " " << top -> val << endl;
+            curr = next;
+            st.pop();
+        }
+
+        curr -> next  = NULL;
     }
 };
