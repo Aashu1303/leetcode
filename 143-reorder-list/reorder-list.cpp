@@ -27,7 +27,7 @@ public:
             ListNode* top = st.top();
             curr -> next = top;
             top -> next = next;
-            cout << curr -> val << " " << top -> val << endl;
+            //cout << curr -> val << " " << top -> val << endl;
             curr = next;
             st.pop();
         }
