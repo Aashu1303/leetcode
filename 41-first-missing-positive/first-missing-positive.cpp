@@ -1,21 +1,19 @@
 class Solution {
 public:
     int firstMissingPositive(vector<int>& nums) {
-        int maxE = *max_element(nums.begin(),nums.end());
-        if(maxE <= 0) return 1;
+        int n = nums.size();
+        vector<int> v(n+1);
 
-        priority_queue<int , vector<int> , greater<int>> pq;
-        for(int i = 0 ; i < nums.size() ; i++){
-            pq.push(nums[i]);
+        for(int i = 0 ;i < nums.size() ; i++){
+            if(nums[i] > 0 && nums[i] <= n){
+                v[nums[i]]++;
+            }
         }
 
-
-        int ans = 1;
-        while(!pq.empty() && pq.top() <= ans){
-            if(pq.top() == ans) ans++;
-            pq.pop();
+        for(int i = 1 ; i <= n ; i++){
+            if(v[i] == 0) return i;
         }
 
-        return ans;
+        return n+1;
     }
 };
