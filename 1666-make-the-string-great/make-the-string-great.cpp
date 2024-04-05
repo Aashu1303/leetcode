@@ -2,17 +2,14 @@ class Solution {
 public:
     string makeGood(string s) {
         string ans = "";
-        stack<char> st;
         int n = s.length();
         for(int i = 0 ; i < n ; i++){
-            if(!st.empty() && (s[i] == st.top()-32 || s[i] == st.top() + 32)){
-                st.pop();
+            if(!ans.empty() && (s[i] == ans.back()-32 || s[i] == ans.back() + 32)){
+                ans.pop_back();
             } else{
-                st.push(s[i]);
+                ans.push_back(s[i]);
             }
         }
-        while(!st.empty()) ans += st.top() , st.pop();
-        reverse(ans.begin(),ans.end());
         return ans;
     }
 };
