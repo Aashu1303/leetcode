@@ -4,14 +4,14 @@ public:
         string ans = "";
         int n = s.size();
         stack<int> st;
-        unordered_set<int> se;
+        unordered_map<int,int> mp;
         for(int i = 0 ; i < s.size() ; i++){
             if(s[i] == '('){
                 st.push(i);
             }else if(s[i] == ')'){
                 if(!st.empty()){
-                    se.insert(i);
-                    se.insert(st.top());
+                    mp[i]++;
+                    mp[st.top()]++;
                     st.pop();
                 }
             }
@@ -19,7 +19,7 @@ public:
         //for(auto i : se) cout << i << " ";
         for(int i = 0; i < n ; i++){
             if(s[i] == '(' || s[i] == ')'){
-                if(se.find(i) != se.end()){
+                if(mp[i] != 0){
                     ans += s[i];
                 }
             }else{
