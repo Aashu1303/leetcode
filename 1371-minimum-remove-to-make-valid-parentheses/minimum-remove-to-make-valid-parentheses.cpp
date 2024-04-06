@@ -4,7 +4,7 @@ public:
         string ans = "";
         int n = s.size();
         stack<int> st;
-        set<int> se;
+        unordered_set<int> se;
         for(int i = 0 ; i < s.size() ; i++){
             if(s[i] == '('){
                 st.push(i);
