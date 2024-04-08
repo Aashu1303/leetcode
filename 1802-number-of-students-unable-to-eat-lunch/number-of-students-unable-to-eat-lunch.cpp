@@ -1,20 +1,20 @@
 class Solution {
 public:
-    int countStudents(vector<int>& students, vector<int>& sandwiches) {
-        deque<int> dq(students.begin() , students.end());
-        deque<int> s (sandwiches.begin() , sandwiches.end());
+    int countStudents(vector<int>& st, vector<int>& sa) {
+        int i = 0, j = 0 , n = sa.size();
         int count = 0;
-        while(s.size() != count && !s.empty()){
-            if(dq.front() == s.front()){
+        while((j < n) && (count != n-j+1)){
+            if(st[i] == sa[j]){
                 count = 0;
-                dq.pop_front();
-                s.pop_front();
+                i++;
+                j++;
             }else{
-                dq.push_back(dq.front());
-                dq.pop_front();
+                st.push_back(st[i]);
+                i++;
                 count++;
-            }       }
+            }
+        }
 
-        return s.size();
+        return n-j;
     }
 };
