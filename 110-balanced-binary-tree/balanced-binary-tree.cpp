@@ -23,6 +23,6 @@ class Solution {
 public:
     bool isBalanced(TreeNode* root) {
         // if the height of the left subtree and the rightsubtree at any node of the given binary tree is strictly less than 2 then the binary is balanced
-        return (solve(root)==-1 )? 0 : 1;
+        return (solve(root)==-1)? 0 : 1;
     }
 };
