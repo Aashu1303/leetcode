@@ -10,21 +10,19 @@
  * };
  */
 class Solution {
-    void solve(TreeNode*&root , int prev , vector<int> &nums){
+    int ans = 0;
+    void solve(TreeNode*&root , int prev){
         if(root == NULL) return;
         if(root -> left == NULL && root -> right == NULL){
-            nums.push_back(prev * 10 + root -> val);
+            ans += prev * 10 + root -> val;
             return;
         }
-        solve(root->left,(prev*10)+root->val,nums);
-        solve(root -> right , (prev*10)+root->val , nums);
+        solve(root->left,(prev*10)+root->val);
+        solve(root -> right , (prev*10)+root->val);
     }
 public:
     int sumNumbers(TreeNode* root) {
-        vector<int> temp;
-        solve(root , 0 , temp);
-        int sum = 0;
-        for(auto i : temp) sum += i;
-        return sum;        
+        solve(root , 0);
+        return ans;        
     }
 };
