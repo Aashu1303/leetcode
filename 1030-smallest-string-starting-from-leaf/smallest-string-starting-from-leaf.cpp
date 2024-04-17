@@ -10,28 +10,28 @@
  * };
  */
 class Solution {
-    void solve(TreeNode*&root , string s , vector<string>&v){
+    void solve(TreeNode*&root , string s , string &ans){
         if(root -> left == NULL && root -> right == NULL){
             int val = root -> val;
             s.push_back((val+'a'));
             reverse(s.begin(),s.end());
-            v.push_back(s);
+            ans = min(ans , s);
             return;
         }
         int val = root -> val;
         s.push_back((val+'a'));
         
-        if(root -> left) solve(root->left , s , v);        
-        if(root -> right) solve(root->right , s , v);
+        if(root -> left) solve(root->left , s , ans);        
+        if(root -> right) solve(root->right , s , ans);
     }
 
 public:
     string smallestFromLeaf(TreeNode* root) {
-        vector<string> v; string s;
-        solve(root , s , v);
-        s = "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz";
+        vector<string> v; 
+        string s , ans = "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"; 
+        solve(root , s , ans);
         //cout << char('a'+1) << endl;
-        for(auto i : v) s = min(s , i);
-        return s;
+        // for(auto i : v) s = min(s , i);
+        return ans;
     }
 };
