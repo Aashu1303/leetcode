@@ -5,11 +5,9 @@ public:
         vector<int> dp(n, 1) , mp(26,0);
         mp[s[0]-'a']++;
         for(int i = 1 ; i < n ; i++){
-            int mn = (s[i] - k) , mx = (s[i] + k);
-            for(char c = 'a' ; c <= 'z' ; c++){
-                if(c >= mn && c <= mx){
-                    dp[i] = max(dp[i] , mp[c-'a']+1);
-                }
+            int mn = max((s[i] - k) , 97) , mx = min(s[i] + k ,122);
+            for(int c = mn ; c <= mx ; c++){
+                dp[i] = max(dp[i] , mp[c-97]+1);
             }
             mp[s[i]-'a'] = max(dp[i] , mp[s[i]-'a']);
             ans = max(ans , dp[i]);
