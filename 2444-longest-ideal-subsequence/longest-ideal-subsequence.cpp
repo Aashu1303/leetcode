@@ -1,6 +1,7 @@
 class Solution {
 public:
     int longestIdealString(string s, int k) {
+        int ans = 1;
         int n = s.size();
         vector<int> dp(n+1, 1);
         unordered_map<char,int> mp;
@@ -13,9 +14,9 @@ public:
                 }
             }
             mp[s[i]] = max(dp[i] , mp[s[i]]);
+            ans = max(ans , dp[i]);
         }
-        int ans = 0;
-        for(auto i : dp) ans = max(i , ans);
+
         return ans;
     }
 };
