@@ -1,10 +1,8 @@
 class Solution {
 public:
     int longestIdealString(string s, int k) {
-        int ans = 1;
-        int n = s.size();
-        vector<int> dp(n, 1);
-        vector<int> mp(26,0);
+        int ans = 1 , n = s.size();
+        vector<int> dp(n, 1) , mp(26,0);
         mp[s[0]-'a']++;
         for(int i = 1 ; i < n ; i++){
             int mn = (s[i] - k) , mx = (s[i] + k);
