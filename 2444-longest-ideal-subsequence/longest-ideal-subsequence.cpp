@@ -9,7 +9,7 @@ public:
         for(int i = 1 ; i < n ; i++){
             int mn = (s[i] - k) , mx = (s[i] + k);
             for(char c = 'a' ; c <= 'z' ; c++){
-                if((int)c >= mn && (int)c <= mx){
+                if(c >= mn && c <= mx){
                     dp[i] = max(dp[i] , mp[c]+1);
                 }
             }
