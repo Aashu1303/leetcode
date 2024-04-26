@@ -1,18 +1,18 @@
-static auto _ = []() { std::ios_base::sync_with_stdio(false); std::cin.tie(nullptr); return 0; }();
 class Solution {
+    int solve(string &s , char last , int i , int k , vector<vector<int>>&dp){
+        if(i >= s.size()) return 0;
+        if(dp[i][last - 'a'] != -1) return dp[i][last - 'a'];
+        int take = INT_MIN;
+        if(last == '{' || abs(s[i] - last) <= k){
+            take = 1 + solve(s,s[i],i+1,k,dp);
+        }
+        int skip = solve(s,last,i+1,k,dp);
+        return dp[i][last - 'a'] = max(take , skip);
+    }
 public:
     int longestIdealString(string s, int k) {
-        int ans = 1 , n = s.size();
-        vector<int> dp(n, 1) , mp(26,0);
-        mp[s[0]-'a']++;
-        for(int i = 1 ; i < n ; i++){
-            int mn = max((s[i] - k) , 97) , mx = min((s[i] + k) ,122);
-            for(int c = mn ; c <= mx ; c++){
-                dp[i] = max(dp[i] , mp[c-97]+1);
-            }
-            mp[s[i]-'a'] = max(dp[i] , mp[s[i]-'a']);
-            ans = max(ans , dp[i]);
-        }
+        vector<vector<int>> dp(s.size()+1 , vector<int>(27 , -1));                  
+        int ans =  solve(s , '{' , 0 , k , dp);
 
         return ans;
     }
