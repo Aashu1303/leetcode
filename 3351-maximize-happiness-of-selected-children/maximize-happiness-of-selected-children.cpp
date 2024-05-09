@@ -6,10 +6,7 @@ public:
        sort(h.begin() , h.end() , greater<int>());
        int count = 0 , j = 0;
        for(int i = 0 ; i < k ; i++){
-            while(j < h.size() && h[j] < count){
-                j++;
-            }
-            if(j >= h.size()) break;
+            if(count > h[j]) break;
             ans += abs(h[j] - count);
             count++;
             j++;
