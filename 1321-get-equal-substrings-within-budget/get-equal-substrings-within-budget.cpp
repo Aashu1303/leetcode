@@ -7,7 +7,7 @@ public:
             prefix[i+1] = prefix[i] + abs(s[i]-t[i]); 
         }
         int ans = 0;
-        for(auto i : prefix) cout << i << " ";
+        // for(auto i : prefix) cout << i << " ";
         cout << endl;
         for(int i = 1 ; i <= n ; i++){
             int x = lower_bound(prefix.begin() , prefix.begin() + i , prefix[i]-maxCost) - prefix.begin();
