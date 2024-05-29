@@ -20,13 +20,13 @@ public:
                 }
                 if(f) s.push_back('1');
             }else{
-                string temp;
+                // string temp;
                 for(int i = 1 ; i < x ; i++){
-                    temp.push_back(s[i]);
+                    s[i-1] = s[i];
                 }
-                s = temp;
+                s.pop_back();
             }
-            cout << s << " " << count << endl;
+            //cout << s << " " << count << endl;
         }
         return count;
     }
