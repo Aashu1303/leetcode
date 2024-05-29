@@ -3,8 +3,8 @@ public:
     int numSteps(string s) {
         reverse(s.begin() , s.end());
         int count = 0;
-        while(s.size() > 1){
-            int x = s.size();
+        while(s != "1"){
+            int x =s.size();
             count++;
             if(s[0] == '1'){
                 s[0] = '0';
