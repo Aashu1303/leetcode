@@ -1,23 +1,18 @@
 class Solution {
 public:
     int longestPalindrome(string s) {
-        int even = 0 , odd = 0;
+        int ans = 0 , count = 0;
         map<char,int> mp;
-        int count = 0;
         for(auto &i : s){
             mp[i]++;
+            ans++;
         }
 
         for(auto &i : mp){
-            if(i.second % 2 == 0){
-                even += i.second;
-            }else{
-                odd += (i.second -1);
-                count++;
-            }
+            if(i.second % 2) count++;
         }
 
-        if(count) odd++;
-        return even + odd;
+        if(count != 0) ans -= (count-1);
+        return ans;
     }
 };
