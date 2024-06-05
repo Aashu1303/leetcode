@@ -2,12 +2,12 @@ class Solution {
 public:
     vector<string> commonChars(vector<string>& words) {
         vector<string> ans;
-        map<char,int> mp;
+        unordered_map<char,int> mp;
         for(auto &i : words[0]) mp[i]++;
         
         for(int i = 1 ; i < words.size() ; i++){
             string s = words[i];
-            map<int,int> mp1;
+            unordered_map<int,int> mp1;
             for(auto &j : s){
                 mp1[j]++;
             }
