@@ -2,7 +2,7 @@ class Solution {
 public:
     string replaceWords(vector<string>& dictionary, string sentence) {
         string ans;
-        map<string,int> mp;
+        unordered_map<string,int> mp;
         for(auto i : dictionary){
             mp[i]++;
         }
