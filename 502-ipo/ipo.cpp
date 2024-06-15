@@ -3,6 +3,7 @@ typedef pair<int,int> pii;
 class Solution {
 public:
     int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capital) {
+        ios_base::sync_with_stdio(false);
         int n = profits.size();
         priority_queue<pii> pq;
         vector<pii> v;
