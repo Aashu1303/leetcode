@@ -23,7 +23,7 @@ public:
         }   
 
 
-        // at last we need to take the rest of the elements from which w is greater in capital
+        // at last we need to take the rest of the capitals profit which w is greater
         while(!pq.empty() && k > 0 && w >= pq.top().second){
             w += pq.top().first;
             pq.pop();
