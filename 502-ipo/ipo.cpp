@@ -9,11 +9,10 @@ public:
         for(int i = 0 ; i < n ; i++){
             v.push_back({capital[i] , profits[i]});
         }
+
         sort(v.begin() , v.end());
-        // for(auto i : s){
-        //     cout << i.first << " " << i.second << endl;
-        // }
         
+        // every time the current capital is greater than w , we need to take all the previous maxm capitals profits until the w will be greater than the curr 
         for(auto i : v){
             while(!pq.empty() && k > 0 && (i.first > w) && (pq.top().second <= w)){
                 w += pq.top().first;
@@ -23,6 +22,8 @@ public:
             pq.push({i.second , i.first});
         }   
 
+
+        // at last we need to take the rest of the elements from which w is greater in capital
         while(!pq.empty() && k > 0 && w >= pq.top().second){
             w += pq.top().first;
             pq.pop();
