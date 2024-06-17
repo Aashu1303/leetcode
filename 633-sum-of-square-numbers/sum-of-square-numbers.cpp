@@ -10,7 +10,7 @@ public:
         map<long long , int> mp;
         for(int i = 0 ; i < temp.size() ; i++){
             long long target = c - temp[i];
-            if((c > 0 && mp[target] > 0) || (2LL * temp[i] == c)){
+            if((target >= 0 && mp[target] > 0) || (2LL * temp[i] == c)){
                 return true;
             }
             mp[temp[i]]++;
