@@ -1,6 +1,7 @@
 class Solution {
 public:
     bool judgeSquareSum(int c) {
+        ios::sync_with_stdio(false);
         long long x = sqrt(c) + 1;
         vector<long long> temp;
         for(long long i = 0 ; i <= x ; i++){
