@@ -3,15 +3,15 @@ public:
     int numberOfSubarrays(vector<int>& nums, int k) {
         int n = nums.size();
         int odd = 0 , l = 0 , ans = 0;
-        deque<int> dq;
+        queue<int> dq;
         for(int r = 0 ; r < n ; r++){
             if(nums[r] & 1){
-                dq.push_back(r);
+                dq.push(r);
                 odd++;
             }
             while(odd > k){
                 odd -= (nums[l] % 2);
-                if(dq.front() == l) dq.pop_front();
+                if(dq.front() == l) dq.pop();
                 l++; 
             }
             if(odd == k){
